@@ -28,6 +28,12 @@ public class ConnectionFactory
 
     public Connection createNewConnection()
     {
+    	   try {
+               Class.forName("org.postgresql.Driver");
+           } catch (ClassNotFoundException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+           }
         String url = "";
         try
         {

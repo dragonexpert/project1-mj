@@ -10,7 +10,7 @@ public class Main
     public static void main(String[] args) throws Exception
     {
     	
-    	ConnectionFactory connectionFactory = new ConnectionFactory("----", "----", ----, "---", "---");
+    	ConnectionFactory connectionFactory = new ConnectionFactory("java-angular-82322.cqrfh5fisbnz.us-west-1.rds.amazonaws.com", "postgres", 5432, "postgres", "password123");
         Connection connection = connectionFactory.createNewConnection();
 
         // Generate a list example

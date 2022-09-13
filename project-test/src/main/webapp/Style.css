@@ -1,0 +1,87 @@
+body{
+	background-image: url(bg.png);
+}
+
+#centerBox{
+	border-radius: 25px;
+	/*background: #6adade;*/
+	background: #cca274;
+	margin: auto;
+	width: 50%;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+input{
+	background: #f5d4b0;
+	border: 1px solid black;
+}
+
+
+
+@font-face {
+  font-family: titleFont;
+  src: url(AncientModernTales-a7Po.ttf);
+}
+h1, h2{
+	font-family: titleFont;
+}
+
+
+
+button{
+	/*background-color: #04AA6D;*/
+	background-color: #606C38;
+	border: 1px solid black;
+	color: white;
+	cursor: pointer;
+	padding: 10px 24px;
+	border-radius: 10px;
+}
+button:hover {
+	/*background-color: #3e8e41;*/
+	background-color: #283618;
+}
+input[type=sumbit]{
+	/*background-color: #04AA6D;*/
+	background-color: #606C38;
+	border: 1px solid black;
+	color: white;
+	cursor: pointer;
+	padding: 10px 24px;
+	border-radius: 10px;
+}
+input[type=sumbit]:hover {
+	/*background-color: #3e8e41;*/
+	background-color: #283618;
+}
+
+
+
+.btn-group button{
+	float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+	border-right: none; /* Prevent double borders */
+}
+.btn-group button:last-child{
+	border-radius: 0px 10px 10px 0px;
+}
+.btn-group button:first-child{
+	border-radius: 10px 0px 0px 10px;
+}
+.btn-group button:not(:first-child):not(:last-child){
+	border-radius: 0px 0px 0px 0px;
+}
+
+.btn-group:after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.innerFormButton {
+	width: max-content; float:left;
+}
