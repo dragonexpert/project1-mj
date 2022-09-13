@@ -10,11 +10,11 @@ public class Main
     public static void main(String[] args) throws Exception
     {
     	
-    	ConnectionFactory connectionFactory = new ConnectionFactory("java-angular-82322.cqrfh5fisbnz.us-west-1.rds.amazonaws.com", "postgres", 5432, "postgres", "password123");
+    	ConnectionFactory connectionFactory = new ConnectionFactory("----", "----", ----, "---", "---");
         Connection connection = connectionFactory.createNewConnection();
 
         // Generate a list example
-        QueryBuilder queryBuilder = new QueryBuilder(connection, "Weapons");
+        QueryBuilder queryBuilder = new QueryBuilder(connection, "repository.Weapons");
         queryBuilder = queryBuilder.getColumns("*").fromTable("weapons");
         queryBuilder.viewSQL();
         ArrayList<Object> userList;
