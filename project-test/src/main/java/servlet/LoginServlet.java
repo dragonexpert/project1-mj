@@ -30,21 +30,25 @@ public class LoginServlet extends HttpServlet{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		try {
 		 QueryBuilder queryBuilder = new QueryBuilder(connection, "repository.User");
-	        queryBuilder.getColumns("*").fromTable("game_user");
-	        queryBuilder.viewSQL();
-	        ArrayList<Object> userList;
-	        userList = queryBuilder.executeQuery();
-	        System.out.println("Rows: " + userList.size());
-	        System.out.println(userList.toString());
+	        queryBuilder.getColumns("*").fromTable("game_user").where("username",username,"=");
+	        User user = (User) queryBuilder.getOne();
 	        System.out.println("\n\n\n");
 	        
 		//Replace with verifying the username
-		if(username.equals("user")) {
+		if(password.equals(user.getPassword())) {
 			System.out.println("Successful login");
 			RequestDispatcher rd = request.getRequestDispatcher("game");
 			rd.forward(request, response);
-		} else {
+		} else {		
+			System.out.println("Failed login");
+		//out.println("Username or password is incorrect");
+		RequestDispatcher rd = request.getRequestDispatcher("index.html");
+		rd.include(request, response);
+			
+		}
+		}catch(Exception e) {
 			System.out.println("Failed login");
 			//out.println("Username or password is incorrect");
 			RequestDispatcher rd = request.getRequestDispatcher("index.html");

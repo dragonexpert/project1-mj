@@ -40,11 +40,9 @@ public class ConnectionFactory
             url = "jdbc:postgresql://" + host + ":" + port + "/" + databaseName;
 
             Connection connection = DriverManager.getConnection(url, databaseUser, databasePassword);
-            System.out.println("Connection Success!");
             return connection;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            System.out.println("Connection Failure: " + url);
             e.printStackTrace();
         } catch (Exception e) {
             // TODO Auto-generated catch block

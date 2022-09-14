@@ -676,6 +676,7 @@ public class QueryBuilder
             ResultSet resultSet = preparedStatement.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             objectArrayList = new ArrayList<>();
+            
             while(resultSet.next())
             {
                 Class<?> annotatedClass = Class.forName(this.className);
@@ -692,45 +693,20 @@ public class QueryBuilder
                 for(Field field : fields)
                 {
                     field.setAccessible(true);
-                    Annotation[] annotations = field.getDeclaredAnnotations();
-                    for(Annotation annotation : annotations)
+                    try
                     {
-                        String[] annotationParts = annotation.toString().split(", ");
-                        String[] pairs = annotationParts[3].split("=");
-                        String resultSetKey = pairs[1].replace("\"", "");
-                        String type = field.getType().toString();
-                        switch(type)
-                        {
-                            case "int":
-                                field.set(obj, resultSet.getInt(resultSetKey));
-                                break;
-                            case "double":
-                                try
-                                {
-                                    field.set(obj, resultSet.getObject(resultSetKey));
-                                }
-                                catch (Exception e)
-                                {
-                                    // Might be money format
-                                    Object originalValue = (String) resultSet.getString(resultSetKey);
-                                    BigDecimal bigDecimal = QueryBuilder.parseCurrencyColumn(originalValue.toString(), Locale.US);
-                                    field.set(obj, bigDecimal.doubleValue());
-                                }
-                                break;
-                            case "String":
-                                field.set(obj, resultSet.getString(resultSetKey));
-                                break;
-                            default:
-                                field.set(obj, resultSet.getObject(resultSetKey));
-                                break;
-                        }
+                    	field.set(obj, resultSet.getObject(field.getName()));
+                    }
+                    catch(Exception e)
+                    {
+                    	e.printStackTrace();
                     }
                 }
-                assert obj != null;
+               // assert obj != null;
                 objectArrayList.add(obj);
-            }
+            } // End while loop
         }
-        catch (SQLException | ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | ParseException e)
+        catch (SQLException | ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException e)
         {
             e.printStackTrace();
         }

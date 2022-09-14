@@ -14,8 +14,8 @@ public class Main
         Connection connection = connectionFactory.createNewConnection();
 
         // Generate a list example
-        QueryBuilder queryBuilder = new QueryBuilder(connection, "repository.Weapons");
-        queryBuilder = queryBuilder.getColumns("*").fromTable("weapons");
+        QueryBuilder queryBuilder = new QueryBuilder(connection, "repository.Character");
+        queryBuilder = queryBuilder.getColumns("*").fromTable("character_sheet");
         queryBuilder.viewSQL();
         ArrayList<Object> userList;
         userList = queryBuilder.executeQuery();
